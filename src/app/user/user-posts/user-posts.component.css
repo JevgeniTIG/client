@@ -1,0 +1,21 @@
+.post-card {
+  display: block;
+  margin: 1rem auto;
+  width: 60%;
+}
+button {
+  color: #4051b6;
+  margin-bottom: 20px;
+}
+button:active{
+  border: none;
+}
+
+.thumbnail-zero, .thumbnail-one, .thumbnail-two, .thumbnail-three {
+  height: 60px;
+  padding-right: 4px;
+  padding-bottom: 10px;
+}
+
+
+

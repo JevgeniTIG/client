@@ -1,0 +1,49 @@
+<div>
+  <h2>Edit Post</h2>
+  <form [formGroup]="postEditForm">
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput
+             formControlName="title">
+    </mat-form-field>
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Description</mat-label>
+      <input matInput
+             formControlName="caption">
+    </mat-form-field>
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Location</mat-label>
+      <input matInput
+             formControlName="location">
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of categories" [value]="category.viewValue">
+          {{category.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Price (only numbers)</mat-label>
+      <input matInput
+             formControlName="price">
+    </mat-form-field>
+
+      <mat-radio-group formControlName="status">
+        <mat-radio-button [value]="1" (change)="selection = $event.value">On Sale</mat-radio-button>
+        <mat-radio-button [value]="2" (change)="selection = $event.value">Sold Out</mat-radio-button>
+      </mat-radio-group>
+
+
+    <div class="row">
+      <button (click)="closeDialog()" class="w-50"
+              mat-button mat-dialog-close disableRipple>
+        Cancel
+      </button>
+      <button color="primary" class="w-50" [disabled]="postEditForm.invalid" (click)="submit()" mat-button
+              disableRipple>
+        Update
+      </button>
+    </div>
+  </form>
+</div>

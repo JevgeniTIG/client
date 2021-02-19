@@ -1,0 +1,22 @@
+.mat-toolbar{
+  z-index: 10000;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+}
+.logo {
+  color: #4051b6;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+#menu-item button {
+  display: block;
+  margin: 0 auto;
+}
+.logout{
+  color: #ff4081;
+}
+
+

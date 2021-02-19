@@ -1,0 +1,70 @@
+.drawer-container {
+  width: 15%;
+}
+
+.side-filter {
+  margin-left: 10px;
+  position: fixed;
+  top: 100px;
+}
+
+.index-page {
+  display: block;
+  margin: 0 auto;
+  width: 60%;
+  padding-top: 3rem;
+}
+
+.post-card {
+  display: block;
+  margin: 2rem auto;
+  width: 80%;
+}
+
+.is-liked {
+  color: darkred;
+}
+
+.not-liked {
+  color: grey;
+}
+
+.my-paginator {
+  color: #4051b6;
+}
+
+.thumbnail-zero, .thumbnail-one, .thumbnail-two, .thumbnail-three {
+  height: 60px;
+  padding-right: 4px;
+  padding-bottom: 10px;
+}
+
+.page-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.first-page, .second-page, .third-page, .fourth-page {
+  margin-top: 10px;
+  margin-right: 10px;
+  color: #ffffff;
+  background-color: #4051b6;
+  border: transparent;
+  border-radius: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+  text-decoration: none;
+  color: #4051b6;
+}
+
+
+
+
+

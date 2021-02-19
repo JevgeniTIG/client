@@ -1,0 +1,111 @@
+<mat-drawer-container class="main-container">
+  <mat-drawer mode="side" opened class="drawer-container">
+
+    <h4></h4>
+    <mat-form-field class="side-filter" appearance="standard">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="category" name="selected-category">
+        <mat-option *ngFor="let cat of categories" [value]="cat.viewValue" (click)="showPostsForCurrentPageByCategory(lowValue, highValue, cat.viewValue)">
+          {{cat.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </mat-drawer>
+  <mat-drawer-content>
+
+    <div *ngIf="isPostsLoaded && isUserDataLoaded" class="index-page">
+      <mat-card class="post-card" *ngFor="let post of posts; let i = index">
+        <mat-card-header style="text-align: left">
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{post.title}}</mat-card-title>
+          <mat-card-subtitle>{{post.location}} |
+            <div *ngIf="post.status == 'ON SALE'; then onSale; else soldOut;"></div>
+            |
+            {{post.price}} EUR
+          </mat-card-subtitle>
+        </mat-card-header>
+        <div class="no-images" *ngIf="post.image.length === 0">
+          <img mat-card-image [src]="'assets/images/surfboards.jpg'" alt="post image">
+        </div>
+
+
+        <div class="has-images" *ngIf="post.image.length > 0">
+          <img mat-card-image *ngIf="!post.isImageThumbnailTouched; then isNotTouched; else isTouched">
+          <div class="thumbnails">
+
+              <img *ngIf="post.image[0]" class="thumbnail-zero" [src]="formatImage(post.image[0].imageBytes)"
+                   (click)="changeMainImg(formatImage(post.image[0].imageBytes), i)">
+
+              <img *ngIf="post.image[1]" class="thumbnail-one" [src]="formatImage(post.image[1].imageBytes)"
+                   (click)="changeMainImg(formatImage(post.image[1].imageBytes), i)">
+
+              <img *ngIf="post.image[2]" class="thumbnail-two" [src]="formatImage(post.image[2].imageBytes)"
+                   (click)="changeMainImg(formatImage(post.image[2].imageBytes), i)">
+
+              <img *ngIf="post.image[3]" class="thumbnail-three" [src]="formatImage(post.image[3].imageBytes)"
+                   (click)="changeMainImg(formatImage(post.image[3].imageBytes), i)">
+          </div>
+        </div>
+
+        <ng-template #isNotTouched><img mat-card-image [src]="formatImage(post.image[0].imageBytes)"></ng-template>
+        <ng-template #isTouched><img mat-card-image [src]="post.mainImage"></ng-template>
+
+
+        <mat-card-subtitle align="start">Posted by {{post.userName}} on {{post.createdDate}}</mat-card-subtitle>
+        <mat-card-content>
+          <p>{{post.caption}}</p>
+
+          <ng-template #showMail><span style="color: #4051b6"><a href="mailto:{{post.email}}">{{post.email}}</a></span></ng-template>
+          <ng-template #hideMail></ng-template>
+
+
+          <div *ngIf="post.showMail; then showMail; else hideMail;"></div>
+
+          <ng-template #showPhoneAndPipe> | <span style="color: #4051b6"><a href="tel:{{post.phone}}">{{post.phone}}</a></span></ng-template>
+          <ng-template #showPhone><span style="color: #4051b6"><a href="tel:{{post.phone}}">{{post.phone}}</a></span></ng-template>
+          <ng-template #hidePhone></ng-template>
+          <div *ngIf="post.showPhone && !post.showMail; then showPhone; else hidePhone;"></div>
+          <div *ngIf="post.showPhone && post.showMail; then showPhoneAndPipe; else hidePhone;"></div>
+
+        </mat-card-content>
+
+        <mat-card-actions align="start">
+
+          <button *ngIf="isUserDataLoaded" mat-button (click)="likePost(post.id, i)"
+                  [ngClass]="post.userLiked.indexOf(user.userName) !== -1 ? 'is-liked' : 'not-liked'">
+            <mat-icon>favorite</mat-icon>
+            Like
+          </button>
+        </mat-card-actions>
+
+        <div style="text-align: left">
+          <p *ngFor="let comment of post.comments"><span
+            style="font-weight: 500">{{comment.userName}}</span>: {{comment.message}}</p>
+        </div>
+
+
+        <mat-form-field class="w-100">
+          <mat-label>Leave a comment...</mat-label>
+          <input [(ngModel)]="commentField" name="commentField" (keyup.enter)="postComment($event.target.value, post.id, i)" matInput #message maxlength="128">
+          <mat-hint align="end">{{message.value.length}} / 128</mat-hint>
+        </mat-form-field>
+
+      </mat-card>
+    </div>
+
+
+  </mat-drawer-content>
+</mat-drawer-container>
+
+<div *ngIf="!categorySelected" class="page-buttons">
+<button class="first-page" (click)="showPostsForCurrentPage(0, 3)">1</button>
+<button class="second-page" (click)="showPostsForCurrentPage(3, 6)">2</button>
+<button class="third-page" (click)="showPostsForCurrentPage(6, 9)">3</button>
+<button class="fourth-page" (click)="showPostsForCurrentPage(9, 12)">4</button>
+</div>
+
+
+<ng-template #onSale><span style="color: limegreen">ON SALE</span></ng-template>
+<ng-template #soldOut><span style="color: red">SOLD OUT</span></ng-template>
+

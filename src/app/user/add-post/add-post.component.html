@@ -1,0 +1,61 @@
+<div>
+  <div style="text-align: right">
+    <button mat-flat-button color="primary" routerLink="/profile">My Posts</button>
+  </div>
+
+  <h2>Create Post</h2>
+  <form [formGroup]="postForm">
+
+
+    <img class="chosen-images-preview" *ngFor='let url of urls'  [src]="url" height="200"> <br/>
+
+    <label class="btn btn-default" type="button">
+      <input class="choose-files-button" type="file" accept="image/*" multiple (change)="selectFiles($event)" value="Choose Files"/>
+      <span class="pick-image-file-text">Max 4 images(size 1024)</span>
+    </label>
+
+
+    <div class="alert alert-light" role="alert">{{ message }}</div>
+
+
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput
+             formControlName="title">
+    </mat-form-field>
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Description</mat-label>
+      <input matInput
+             formControlName="caption">
+    </mat-form-field>
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Location</mat-label>
+      <input matInput
+             formControlName="location">
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category" required>
+        <mat-option *ngFor="let category of categories" [value]="category.viewValue">
+          {{category.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Price (only number) </mat-label>
+      <input matInput
+             formControlName="price">
+    </mat-form-field>
+
+    <mat-checkbox required="false" formControlName="showMail" [(ngModel)]="showMailIsChecked" class="email-checkbox" >Show my email to others</mat-checkbox>
+    <mat-checkbox required="false" formControlName="showPhone" [(ngModel)]="showPhoneIsChecked" class="phone-checkbox" >Show my phone to others</mat-checkbox>
+
+    <div style="text-align: right">
+      <button mat-flat-button color="primary" [disabled]="postForm.invalid" (click)="submit()">
+        Create Post
+      </button>
+    </div>
+
+  </form>
+</div>

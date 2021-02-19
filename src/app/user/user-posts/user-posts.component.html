@@ -1,0 +1,79 @@
+<div *ngIf="isUserPostsLoaded" xmlns="http://www.w3.org/1999/html">
+  <div style="text-align: right">
+    <button mat-flat-button color="primary" routerLink="/profile/add">Add Post</button>
+  </div>
+
+  <h2>{{posts.length}} Posts</h2>
+
+  <mat-card class="post-card" *ngFor="let post of posts; let i = index">
+
+    <mat-card-header style="text-align: left">
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{post.title}}</mat-card-title>
+      <mat-card-subtitle>{{post.location}} |
+        <div *ngIf="post.status == 'ON SALE'; then onSale; else soldOut;"></div>
+        | {{post.price}} EUR
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <div style="text-align: right">
+      <button mat-flat-button (click)="openEditDialog(posts[i])">Edit Post</button>
+    </div>
+
+    <div class="no-images" *ngIf="post.image.length === 0">
+      <img mat-card-image [src]="'assets/images/surfboards.jpg'" alt="post image">
+    </div>
+
+
+    <div class="has-images" *ngIf="post.image.length > 0">
+      <img mat-card-image *ngIf="!post.isImageThumbnailTouched; then isNotTouched; else isTouched">
+      <div class="thumbnails">
+
+        <img *ngIf="post.image[0]" class="thumbnail-zero" [src]="formatImage(post.image[0].imageBytes)"
+             (click)="changeMainImg(formatImage(post.image[0].imageBytes), i)">
+
+        <img *ngIf="post.image[1]" class="thumbnail-one" [src]="formatImage(post.image[1].imageBytes)"
+             (click)="changeMainImg(formatImage(post.image[1].imageBytes), i)">
+
+        <img *ngIf="post.image[2]" class="thumbnail-two" [src]="formatImage(post.image[2].imageBytes)"
+             (click)="changeMainImg(formatImage(post.image[2].imageBytes), i)">
+
+        <img *ngIf="post.image[3]" class="thumbnail-three" [src]="formatImage(post.image[3].imageBytes)"
+             (click)="changeMainImg(formatImage(post.image[3].imageBytes), i)">
+      </div>
+    </div>
+
+    <ng-template #isNotTouched><img mat-card-image [src]="formatImage(post.image[0].imageBytes)"></ng-template>
+    <ng-template #isTouched><img mat-card-image [src]="post.mainImage"></ng-template>
+
+
+    <mat-card-content>
+      <p>
+        {{post.caption}}
+      </p>
+
+    </mat-card-content>
+
+    <div style="text-align: left">
+      <p *ngFor="let comment of post.comments; let c = index"><span style="font-weight: 500">{{comment.userName}}</span>: {{comment.message}}
+        <button color="accent" mat-button (click)="deleteComment(comment.id, i, c)">
+          <mat-icon color="accent">clear</mat-icon>
+        </button>
+      </p>
+    </div>
+
+    <mat-card-actions align="end">
+      <button color="warn" mat-button (click)="removePost(post, i)">
+        <mat-icon color="warn">delete</mat-icon>
+        Remove Post
+      </button>
+    </mat-card-actions>
+
+    <mat-card-subtitle align="start">Likes: {{post.likes}} <span *ngIf="post.likes > 0">by {{post.userLiked}}</span>
+    </mat-card-subtitle>
+  </mat-card>
+</div>
+
+
+<ng-template #onSale><span style="color: limegreen">ON SALE</span></ng-template>
+<ng-template #soldOut><span style="color: red">SOLD OUT</span></ng-template>
