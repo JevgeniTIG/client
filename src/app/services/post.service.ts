@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Post} from '../models/Post';
 
-const POST_API = 'http://localhost:8080/api/post/';
+const POST_API = 'http://localhost:8080/post/';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +48,4 @@ export class PostService {
     return this.http.get(POST_API + 'all' + '/' + lowValue + '/' + highValue + '/' + category);
   }
 
-  // setPageSize(page: number, size: number): Observable<any> {
-  //   return this.http.get(`${POST_API + 'all'}?pageSize=${size}&pageNo=${page}`);
-  // }
 }

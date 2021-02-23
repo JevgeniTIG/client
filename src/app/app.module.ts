@@ -24,6 +24,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import {ButtonsModule} from 'angular-bootstrap-md';
+import {IndexGuestComponent} from './layout/index-guest/index-guest.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {ButtonsModule} from 'angular-bootstrap-md';
     routingComponents,
     NavigationComponent,
     IndexComponent,
+    IndexGuestComponent,
     ProfileComponent,
     UserPostsComponent,
     EditUserComponent,

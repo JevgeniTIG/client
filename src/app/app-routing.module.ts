@@ -9,6 +9,7 @@ import {UserPostsComponent} from './user/user-posts/user-posts.component';
 import {AddPostComponent} from './user/add-post/add-post.component';
 import {EditPostComponent} from './post/edit-post/edit-post.component';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
+import {IndexGuestComponent} from './layout/index-guest/index-guest.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -32,4 +33,4 @@ const routes: Routes = [
 export class AppRoutingModule {
 }
 
-export const routingComponents = [LoginComponent, RegisterComponent, IndexComponent, ProfileComponent];
+export const routingComponents = [LoginComponent, RegisterComponent, IndexComponent, IndexGuestComponent, ProfileComponent];

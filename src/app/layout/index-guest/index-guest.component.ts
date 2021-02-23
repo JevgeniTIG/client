@@ -10,12 +10,12 @@ import {Category} from '../../models/Category';
 
 
 @Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  selector: 'app-index-guest',
+  templateUrl: './index-guest.component.html',
+  styleUrls: ['./index-guest.component.css']
 })
 
-export class IndexComponent implements OnInit {
+export class IndexGuestComponent implements OnInit {
 
   btnOneLow = 0;
   btnOneHigh = 49;
@@ -69,13 +69,6 @@ export class IndexComponent implements OnInit {
         this.getCommentsToPosts(this.posts);
         this.isPostsLoaded = true;
       });
-
-    this.userService.getCurrentUser()
-      .subscribe(data => {
-        console.log(data);
-        this.user = data;
-        this.isUserDataLoaded = true;
-      });
   }
 
   getImagesToPosts(posts: Post[]): void {
@@ -101,39 +94,6 @@ export class IndexComponent implements OnInit {
     });
   }
 
-  likePost(postId: number, postIndex: number): void {
-    const post = this.posts[postIndex];
-    console.log(post);
-
-    if (!post.userLiked.includes(this.user.userName)) {
-      this.postService.likePost(postId, this.user.userName)
-        .subscribe(() => {
-          post.userLiked.push(this.user.userName);
-          this.notificationService.showSnackBar('Liked!');
-        });
-    } else {
-      this.postService.likePost(postId, this.user.userName)
-        .subscribe(() => {
-          const index = post.userLiked.indexOf(this.user.userName, 0);
-          if (index > -1) {
-            post.userLiked.splice(index, 1);
-          }
-        });
-    }
-  }
-
-  postComment(message: string, postId: number, postIndex: number): void {
-    const post = this.posts[postIndex];
-
-    console.log(post);
-    this.commentService.addCommentToPost(postId, message)
-      .subscribe(data => {
-        console.log(data);
-        post.comments.push(data);
-        this.commentField = '';
-      });
-  }
-
   formatImage(img: any): any {
     if (img == null) {
       return null;
@@ -151,13 +111,6 @@ export class IndexComponent implements OnInit {
         this.isPostsLoaded = true;
       });
 
-    this.userService.getCurrentUser()
-      .subscribe(data => {
-        console.log(data);
-        this.user = data;
-        this.isUserDataLoaded = true;
-      });
-
   }
 
   showPostsForCurrentPageByCategory(lowValue: number, highValue: number, currentCategory: string): void {
@@ -169,13 +122,6 @@ export class IndexComponent implements OnInit {
         this.getCommentsToPosts(this.posts);
         this.isPostsLoaded = true;
         this.categorySelected = true;
-      });
-
-    this.userService.getCurrentUser()
-      .subscribe(data => {
-        console.log(data);
-        this.user = data;
-        this.isUserDataLoaded = true;
       });
 
   }
