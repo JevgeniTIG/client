@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {conf} from '../config/conf';
 
-const COMMENT_API = 'http://localhost:8080/comment/';
+const COMMENT_API = conf.host + '/comment/';
+
 
 @Injectable({
   providedIn: 'root'
