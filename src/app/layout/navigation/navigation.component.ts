@@ -36,4 +36,9 @@ export class NavigationComponent implements OnInit {
     this.tokenService.logOut();
     this.router.navigate(['/login']);
   }
+
+  refresh(): void {
+    window.location.reload();
+  }
+
 }

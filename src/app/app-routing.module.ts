@@ -15,8 +15,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'main', component: IndexComponent, canActivate: [AuthGuardService]},
+  {path: 'guest', component: IndexGuestComponent},
   {path: 'welcome', component: WelcomePageComponent},
-  {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+  {path: '', redirectTo: 'guest', pathMatch: 'full'},
   {
     path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService], children: [
       {path: '', component: UserPostsComponent, canActivate: [AuthGuardService]},
