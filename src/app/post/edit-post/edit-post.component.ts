@@ -4,7 +4,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {NotificationService} from '../../services/notification.service';
 import {PostService} from '../../services/post.service';
 import {Post} from '../../models/Post';
-import {Category} from '../../models/Category';
+import {categoriesList} from '../../models/categories';
 
 @Component({
   selector: 'app-edit-post',
@@ -19,16 +19,7 @@ export class EditPostComponent implements OnInit {
   post: Post;
   selection: number;
 
-  categories: Category[] = [
-    {viewValue: 'Kite'},
-    {viewValue: 'Kitebar'},
-    {viewValue: 'Kiteboard'},
-    {viewValue: 'Kitepump'},
-    {viewValue: 'SUP'},
-    {viewValue: 'Surfboard'},
-    {viewValue: 'Wetsuit'},
-    {viewValue: 'Other'},
-  ];
+  categories = categoriesList.categories;
 
   constructor(private dialogRef: MatDialogRef<EditPostComponent>,
               private formBuilder: FormBuilder,

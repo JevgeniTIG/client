@@ -4,8 +4,8 @@ import {Post} from '../../models/Post';
 import {PostService} from '../../services/post.service';
 import {NotificationService} from '../../services/notification.service';
 import {Router} from '@angular/router';
-import {Category} from '../../models/Category';
 import {ImageUploadService} from '../../services/image-upload.service';
+import {categoriesList} from '../../models/categories';
 
 @Component({
   selector: 'app-add-post',
@@ -26,17 +26,7 @@ export class AddPostComponent implements OnInit {
   createdPost: Post;
   showMailIsChecked: boolean;
   showPhoneIsChecked: boolean;
-
-  categories: Category[] = [
-    {viewValue: 'Kite'},
-    {viewValue: 'Kitebar'},
-    {viewValue: 'Kiteboard'},
-    {viewValue: 'Kitepump'},
-    {viewValue: 'SUP'},
-    {viewValue: 'Surfboard'},
-    {viewValue: 'Wetsuit'},
-    {viewValue: 'Other'},
-  ];
+  categories = categoriesList.categories;
 
 
   constructor(private postService: PostService,

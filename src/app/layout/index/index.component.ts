@@ -6,7 +6,7 @@ import {UserService} from '../../services/user.service';
 import {CommentService} from '../../services/comment.service';
 import {NotificationService} from '../../services/notification.service';
 import {ImageUploadService} from '../../services/image-upload.service';
-import {Category} from '../../models/Category';
+import {categoriesList} from '../../models/categories';
 
 
 @Component({
@@ -37,16 +37,7 @@ export class IndexComponent implements OnInit {
   user: User;
   category: string;
 
-  categories: Category[] = [
-    {viewValue: 'Kite'},
-    {viewValue: 'Kitebar'},
-    {viewValue: 'Kiteboard'},
-    {viewValue: 'Kitepump'},
-    {viewValue: 'SUP'},
-    {viewValue: 'Surfboard'},
-    {viewValue: 'Wetsuit'},
-    {viewValue: 'Other'},
-  ];
+  categories = categoriesList.categories;
 
   @ViewChild('commentField') commentField: string;
 
