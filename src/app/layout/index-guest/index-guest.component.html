@@ -100,10 +100,10 @@
 </mat-drawer-container>
 
 <div *ngIf="!categorySelected" class="page-buttons">
-  <button class="first-page" (click)="showPostsForCurrentPage(btnOneLow, btnOneHigh)">1</button>
-  <button class="second-page" (click)="showPostsForCurrentPage(btnTwoLow, btnTwoHigh)">2</button>
-  <button class="third-page" (click)="showPostsForCurrentPage(btnThreeLow, btnThreeHigh)">3</button>
-  <button class="fourth-page" (click)="showPostsForCurrentPage(btnFourLow, btnFourHigh)">4</button>
+  <button *ngIf="posts.length > btnOneHigh" class="first-page" (click)="showPostsForCurrentPage(btnOneLow, btnOneHigh)">1</button>
+  <button *ngIf="posts.length > btnOneHigh" class="second-page" (click)="showPostsForCurrentPage(btnTwoLow, btnTwoHigh)">2</button>
+  <button *ngIf="posts.length > btnTwoHigh" class="third-page" (click)="showPostsForCurrentPage(btnThreeLow, btnThreeHigh)">3</button>
+  <button *ngIf="posts.length > btnThreeHigh" class="fourth-page" (click)="showPostsForCurrentPage(btnFourLow, btnFourHigh)">4</button>
 </div>
 
 
