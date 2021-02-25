@@ -25,6 +25,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import {ButtonsModule} from 'angular-bootstrap-md';
 import {IndexGuestComponent} from './layout/index-guest/index-guest.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import {IndexGuestComponent} from './layout/index-guest/index-guest.component';
     MatSelectModule,
     MatCheckboxModule,
     ButtonsModule,
+    MatTooltipModule,
   ],
   providers: [authInterceptorProviders, authErrorInterceptorProviders],
   bootstrap: [AppComponent]

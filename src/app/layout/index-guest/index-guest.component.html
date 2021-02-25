@@ -5,7 +5,8 @@
     <mat-form-field class="side-filter" appearance="standard">
       <mat-label>Category</mat-label>
       <mat-select [(ngModel)]="category" name="selected-category">
-        <mat-option *ngFor="let cat of categories" [value]="cat.viewValue" (click)="showPostsForCurrentPageByCategory(lowValue, highValue, cat.viewValue)">
+        <mat-option *ngFor="let cat of categories" [value]="cat.viewValue"
+                    (click)="showPostsForCurrentPageByCategory(lowValue, highValue, cat.viewValue)">
           {{cat.viewValue}}
         </mat-option>
       </mat-select>
@@ -56,14 +57,17 @@
         <mat-card-content>
           <p>{{post.caption}}</p>
 
-          <ng-template #showMail><span style="color: #4051b6"><a href="mailto:{{post.email}}">{{post.email}}</a></span></ng-template>
+          <ng-template #showMail><span style="color: #4051b6"><a href="mailto:{{post.email}}">{{post.email}}</a></span>
+          </ng-template>
           <ng-template #hideMail></ng-template>
 
 
           <div *ngIf="post.showMail; then showMail; else hideMail;"></div>
 
-          <ng-template #showPhoneAndPipe> | <span style="color: #4051b6"><a href="tel:{{post.phone}}">{{post.phone}}</a></span></ng-template>
-          <ng-template #showPhone><span style="color: #4051b6"><a href="tel:{{post.phone}}">{{post.phone}}</a></span></ng-template>
+          <ng-template #showPhoneAndPipe> | <span style="color: #4051b6"><a href="tel:{{post.phone}}">{{post.phone}}</a></span>
+          </ng-template>
+          <ng-template #showPhone><span style="color: #4051b6"><a href="tel:{{post.phone}}">{{post.phone}}</a></span>
+          </ng-template>
           <ng-template #hidePhone></ng-template>
           <div *ngIf="post.showPhone && !post.showMail; then showPhone; else hidePhone;"></div>
           <div *ngIf="post.showPhone && post.showMail; then showPhoneAndPipe; else hidePhone;"></div>
@@ -72,9 +76,9 @@
 
         <mat-card-actions class="like-icon" align="start">
 
-          <button matTooltip="Welcome" routerLink="/welcome" mat-icon-button>
+          <button matTooltip="login to like the post" routerLink="/welcome" mat-icon-button>
             <mat-icon>favorite</mat-icon>
-            Like
+<!--            Like-->
           </button>
         </mat-card-actions>
 
@@ -86,9 +90,9 @@
 
         <mat-card-actions class="comment-icon" align="start">
 
-          <button matTooltip="Welcome" routerLink="/welcome" mat-icon-button>
+          <button matTooltip="login to comment the post" routerLink="/welcome" mat-icon-button>
             <mat-icon>comment</mat-icon>
-            Comment
+<!--            Comment-->
           </button>
         </mat-card-actions>
 
@@ -100,10 +104,18 @@
 </mat-drawer-container>
 
 <div *ngIf="!categorySelected" class="page-buttons">
-  <button *ngIf="posts.length > btnOneHigh" class="first-page" (click)="showPostsForCurrentPage(btnOneLow, btnOneHigh)">1</button>
-  <button *ngIf="posts.length > btnOneHigh" class="second-page" (click)="showPostsForCurrentPage(btnTwoLow, btnTwoHigh)">2</button>
-  <button *ngIf="posts.length > btnTwoHigh" class="third-page" (click)="showPostsForCurrentPage(btnThreeLow, btnThreeHigh)">3</button>
-  <button *ngIf="posts.length > btnThreeHigh" class="fourth-page" (click)="showPostsForCurrentPage(btnFourLow, btnFourHigh)">4</button>
+  <button *ngIf="posts.length > btnOneHigh" class="first-page" (click)="showPostsForCurrentPage(btnOneLow, btnOneHigh)">
+    1
+  </button>
+  <button *ngIf="posts.length > btnOneHigh" class="second-page"
+          (click)="showPostsForCurrentPage(btnTwoLow, btnTwoHigh)">2
+  </button>
+  <button *ngIf="posts.length > btnTwoHigh" class="third-page"
+          (click)="showPostsForCurrentPage(btnThreeLow, btnThreeHigh)">3
+  </button>
+  <button *ngIf="posts.length > btnThreeHigh" class="fourth-page"
+          (click)="showPostsForCurrentPage(btnFourLow, btnFourHigh)">4
+  </button>
 </div>
 
 
