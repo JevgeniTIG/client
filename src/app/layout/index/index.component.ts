@@ -136,7 +136,7 @@ export class IndexComponent implements OnInit {
     if (img == null) {
       return null;
     }
-    return img.substring(img.indexOf('/assets'));
+    return img.substring(img.indexOf('/var'));
   }
 
   showPostsForCurrentPage(lowValue: number, highValue: number): void {
