@@ -132,6 +132,13 @@ export class IndexComponent implements OnInit {
     return 'data:image/jpeg;base64,' + img;
   }
 
+  formatImagePath(img: string): any {
+    if (img == null) {
+      return null;
+    }
+    return img.substring(img.indexOf('/assets'));
+  }
+
   showPostsForCurrentPage(lowValue: number, highValue: number): void {
     this.postService.getPostsForCurrentPage(lowValue, highValue)
       .subscribe(data => {

@@ -6,6 +6,7 @@ import {CommentService} from '../../services/comment.service';
 import {NotificationService} from '../../services/notification.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {EditPostComponent} from '../../post/edit-post/edit-post.component';
+import {log} from 'util';
 
 @Component({
   selector: 'app-user-posts',
@@ -71,12 +72,14 @@ export class UserPostsComponent implements OnInit {
     }
   }
 
-  formatImage(img: any): any {
+
+  formatImagePath(img: string): any {
     if (img == null) {
       return null;
     }
-    return 'data:image/jpeg;base64,' + img;
+    return img.substring(img.indexOf('/assets'));
   }
+
 
   deleteComment(commentId: number, postIndex: number, commentIndex: number): void {
     const post = this.posts[postIndex];
