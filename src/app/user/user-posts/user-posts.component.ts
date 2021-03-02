@@ -77,7 +77,7 @@ export class UserPostsComponent implements OnInit {
     if (img == null) {
       return null;
     }
-    return img.substring(img.indexOf('/var'));
+    return img.substring(img.indexOf('/assets'));
   }
 
 
