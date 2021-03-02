@@ -77,7 +77,7 @@ export class AddPostComponent implements OnInit {
               console.log('Uploading images...');
             });
         });
-        this.notificationService.showSnackBar('Post created successfully');
+        // this.notificationService.showSnackBar('Post created successfully');
         this.isPostCreated = true;
         this.router.navigate(['/profile'])
           .then(() => {
