@@ -79,11 +79,11 @@ export class AddPostComponent implements OnInit {
         });
         // this.notificationService.showSnackBar('Post created successfully');
         this.isPostCreated = true;
-        setTimeout(() => {  console.log('Waiting for post to upload'); }, 4000);
-        this.router.navigate(['/profile'])
-          .then(() => {
-            window.location.reload();
-          });
+        this.router.navigate(['/profile']);
+        window.location.reload();
+          // .then(() => {
+          //   window.location.reload();
+          // });
       }
     });
   }
