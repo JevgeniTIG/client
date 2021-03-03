@@ -77,7 +77,7 @@ export class UserPostsComponent implements OnInit {
     if (img == null) {
       return null;
     }
-    return img.substring(img.indexOf('https://api.surfspot.ee/home/ssh droplet/var/www/uploads/'));
+    return img.substring(img.indexOf('https://api.surfspot.ee/home/var/www/uploads/'));
   }
 
 
