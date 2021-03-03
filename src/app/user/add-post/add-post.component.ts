@@ -94,7 +94,7 @@ export class AddPostComponent implements OnInit {
     setTimeout(() => {
       console.log('Test');
       this.timeout();
-    }, 2000);
+    }, 3000);
   }
 
 
