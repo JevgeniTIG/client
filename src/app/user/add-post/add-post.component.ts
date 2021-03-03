@@ -80,15 +80,13 @@ export class AddPostComponent implements OnInit {
         this.notificationService.showSnackBar('Post created successfully');
         this.isPostCreated = true;
         this.timeout();
-        this.router.navigate(['/profile']);
-          // .then(() => {
-          //   window.location.reload();
-          // });
+        this.router.navigate(['/profile'])
+          .then(() => {
+            window.location.reload();
+          });
       }
     });
   }
-
-
 
   timeout(): any {
     setTimeout(() => {
