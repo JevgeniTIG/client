@@ -96,7 +96,7 @@ export class IndexGuestComponent implements OnInit {
     if (img == null) {
       return null;
     }
-    return img.substring(img.indexOf('/assets'));
+    return img.substring(img.indexOf('/uploads'));
   }
 
   showPostsForCurrentPage(lowValue: number, highValue: number): void {
