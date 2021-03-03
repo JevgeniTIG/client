@@ -79,13 +79,16 @@ export class AddPostComponent implements OnInit {
         });
         // this.notificationService.showSnackBar('Post created successfully');
         this.isPostCreated = true;
-        this.router.navigate(['/profile']);
-          // .then(() => {
-          //   window.location.reload();
-          // });
+        setTimeout(() => { }, 3000);
+        this.router.navigate(['/profile'])
+          .then(() => {
+            window.location.reload();
+          });
       }
     });
   }
+
+
 
   selectFiles(event): void {
 
