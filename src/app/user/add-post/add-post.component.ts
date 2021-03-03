@@ -77,14 +77,24 @@ export class AddPostComponent implements OnInit {
               console.log('Uploading images...');
             });
         });
-        // this.notificationService.showSnackBar('Post created successfully');
+        this.notificationService.showSnackBar('Post created successfully');
         this.isPostCreated = true;
-        // this.router.navigate(['/profile']);
+        this.timeout();
+        this.router.navigate(['/profile']);
           // .then(() => {
           //   window.location.reload();
           // });
       }
     });
+  }
+
+
+
+  timeout(): any {
+    setTimeout(() => {
+      console.log('Test');
+      this.timeout();
+    }, 2000);
   }
 
 
