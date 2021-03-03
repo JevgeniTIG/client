@@ -96,7 +96,7 @@ export class IndexGuestComponent implements OnInit {
     if (img == null) {
       return null;
     }
-    return img.substring(img.indexOf('https://api.surfspot.ee/var/www/uploads/'));
+    return img.substring(img.indexOf('https://api.surfspot.ee/home/ssh droplet/var/www/uploads/'));
   }
 
   showPostsForCurrentPage(lowValue: number, highValue: number): void {
