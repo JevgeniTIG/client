@@ -35,17 +35,17 @@
           <img mat-card-image *ngIf="!post.isImageThumbnailTouched; then isNotTouched; else isTouched">
           <div class="thumbnails">
 
-            <img *ngIf="post.image[0]" class="thumbnail-zero" [src]= "formatImagePath(post.image[0])"
-                 (click)="changeMainImg(formatImagePath(post.image[0]), i)">
+            <img *ngIf="post.image[0]" class="thumbnail-zero" [src]= "(post.image[0])"
+                 (click)="changeMainImg((post.image[0]), i)">
 
-            <img *ngIf="post.image[1]" class="thumbnail-one" [src]="formatImagePath(post.image[1])"
-                 (click)="changeMainImg(formatImagePath(post.image[1]), i)">
+            <img *ngIf="post.image[1]" class="thumbnail-one" [src]="(post.image[1])"
+                 (click)="changeMainImg((post.image[1]), i)">
 
-            <img *ngIf="post.image[2]" class="thumbnail-two" [src]="formatImagePath(post.image[2])"
-                 (click)="changeMainImg(formatImagePath(post.image[2]), i)">
+            <img *ngIf="post.image[2]" class="thumbnail-two" [src]="(post.image[2])"
+                 (click)="changeMainImg((post.image[2]), i)">
 
-            <img *ngIf="post.image[3]" class="thumbnail-three" [src]="formatImagePath(post.image[3])"
-                 (click)="changeMainImg(formatImagePath(post.image[3]), i)">
+            <img *ngIf="post.image[3]" class="thumbnail-three" [src]="(post.image[3])"
+                 (click)="changeMainImg((post.image[3]), i)">
           </div>
         </div>
 
