@@ -97,8 +97,7 @@ export class IndexGuestComponent implements OnInit {
     if (img == null) {
       return null;
     }
-    this.tempImg = img.substring(img.indexOf(('uploads') + 8));
-    return this.tempImg.substring(0, this.tempImg.indexOf('/'));
+    return img.substring(img.indexOf('/var'));
   }
 
   showPostsForCurrentPage(lowValue: number, highValue: number): void {
