@@ -96,7 +96,6 @@ export class IndexGuestComponent implements OnInit {
     if (img == null) {
       return null;
     }
-    //var/www/uploads/97/Best-destinations-to-kitesurf-winter-freeridetarifa.jpg/
     const tempImg = img.substring(img.indexOf(('uploads') + 8));
     return tempImg.substring(0, tempImg.indexOf('/'));
   }
