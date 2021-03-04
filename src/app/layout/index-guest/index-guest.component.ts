@@ -96,7 +96,7 @@ export class IndexGuestComponent implements OnInit {
     if (img == null) {
       return null;
     }
-    const tempImg = img.substring(img.indexOf(('uploads') + 7));
+    const tempImg = img.substring(img.indexOf(('uploads') + 8));
     return tempImg.substring(0, img.indexOf('/'));
   }
 
