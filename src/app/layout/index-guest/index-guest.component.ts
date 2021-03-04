@@ -96,10 +96,8 @@ export class IndexGuestComponent implements OnInit {
     if (img == null) {
       return null;
     }
-    img.substring(img.indexOf(('uploads') + 7));
-    img.substring(0, img.indexOf('/'));
-
-    return img;
+    const tempImg = img.substring(img.indexOf(('uploads') + 7));
+    return tempImg.substring(0, img.indexOf('/'));
   }
 
   showPostsForCurrentPage(lowValue: number, highValue: number): void {
