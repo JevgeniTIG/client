@@ -35,7 +35,7 @@
           <img mat-card-image *ngIf="!post.isImageThumbnailTouched; then isNotTouched; else isTouched">
           <div class="thumbnails">
 
-            <img *ngIf="post.image[0]" class="thumbnail-zero" [src]= "'https://api.surfspot.ee/' + 'test' + '/images'"
+            <img *ngIf="post.image[0]" class="thumbnail-zero" [src]= "'https://api.surfspot.ee/' + (post.image[0]) + '/images'"
                  (click)="changeMainImg('https://api.surfspot.ee/' + formatImagePath(post.image[0]) + '/images', i)">
 
             <img *ngIf="post.image[1]" class="thumbnail-one" [src]="(post.image[1])"
