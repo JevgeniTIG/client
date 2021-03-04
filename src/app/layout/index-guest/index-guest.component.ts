@@ -36,6 +36,7 @@ export class IndexGuestComponent implements OnInit {
   isUserDataLoaded = false;
   user: User;
   category: string;
+  tempImg: string;
 
   categories = categoriesList.categories;
 
@@ -96,8 +97,8 @@ export class IndexGuestComponent implements OnInit {
     if (img == null) {
       return null;
     }
-    const tempImg = img.substring(img.indexOf(('uploads') + 8));
-    return tempImg.substring(0, tempImg.indexOf('/'));
+    this.tempImg = img.substring(img.indexOf(('uploads') + 8));
+    return this.tempImg.substring(0, this.tempImg.indexOf('/'));
   }
 
   showPostsForCurrentPage(lowValue: number, highValue: number): void {
