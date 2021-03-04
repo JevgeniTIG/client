@@ -93,7 +93,7 @@ export class IndexGuestComponent implements OnInit {
     return 'data:image/jpeg;base64,' + img;
   }
 
-  formatImagePath(img: string): any {
+  formatImagePath(img: string): string {
     if (img == null) {
       return null;
     }
