@@ -25,32 +25,31 @@
             {{post.price}} EUR
           </mat-card-subtitle>
         </mat-card-header>
-        <div class="no-images" *ngIf="post.image.length === 0">
+
+        <div class="no-images" *ngIf="formatImagePath(post.images) < 1">
           <img mat-card-image [src]="'assets/images/no_image.png'" alt="post image">
         </div>
 
-
-        <div class="has-images" *ngIf="post.image.length > 0">
+        <div class="has-images" *ngIf="post.images.length > 0">
           <img mat-card-image *ngIf="!post.isImageThumbnailTouched; then isNotTouched; else isTouched">
           <div class="thumbnails">
 
-            <img *ngIf="post.image[0]" class="thumbnail-zero" [src]= "formatImagePath(post.image[0])"
-                 (click)="changeMainImg(formatImagePath(post.image[0]), i)">
+            <img *ngIf="formatImagePath(post.images)[0]" class="thumbnail-zero" [src]= "formatImagePath(post.images)[0]"
+                 (click)="changeMainImg(formatImagePath(post.images)[0], i)">
 
-            <img *ngIf="post.image[1]" class="thumbnail-one" [src]="formatImagePath(post.image[1])"
-                 (click)="changeMainImg(formatImagePath(post.image[1]), i)">
+            <img *ngIf="formatImagePath(post.images)[1]" class="thumbnail-one" [src]="formatImagePath(post.images)[1]"
+                 (click)="changeMainImg(formatImagePath(post.images)[1], i)">
 
-            <img *ngIf="post.image[2]" class="thumbnail-two" [src]="formatImagePath(post.image[2])"
-                 (click)="changeMainImg(formatImagePath(post.image[2]), i)">
+            <img *ngIf="formatImagePath(post.images)[2]" class="thumbnail-two" [src]="formatImagePath(post.images)[2]"
+                 (click)="changeMainImg(formatImagePath(post.images)[2], i)">
 
-            <img *ngIf="post.image[3]" class="thumbnail-three" [src]="formatImagePath(post.image[3])"
-                 (click)="changeMainImg(formatImagePath(post.image[3]), i)">
+            <img *ngIf="formatImagePath(post.images)[3]" class="thumbnail-three" [src]="formatImagePath(post.images)[3]"
+                 (click)="changeMainImg(formatImagePath(post.images)[3], i)">
           </div>
         </div>
 
-        <ng-template #isNotTouched><img mat-card-image [src]="(formatImagePath(post.image[0]))"></ng-template>
+        <ng-template #isNotTouched><img mat-card-image [src]="formatImagePath(post.images)[0]"></ng-template>
         <ng-template #isTouched><img mat-card-image [src]="post.mainImage"></ng-template>
-
 
 
         <mat-card-subtitle align="start">Posted by {{post.userName}} on {{post.createdDate}}</mat-card-subtitle>

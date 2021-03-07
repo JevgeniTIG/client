@@ -5,7 +5,6 @@ import {PostService} from '../../services/post.service';
 import {UserService} from '../../services/user.service';
 import {CommentService} from '../../services/comment.service';
 import {NotificationService} from '../../services/notification.service';
-import {ImageUploadService} from '../../services/image-upload.service';
 import {categoriesList} from '../../models/categories';
 
 
@@ -36,6 +35,7 @@ export class IndexComponent implements OnInit {
   isUserDataLoaded = false;
   user: User;
   category: string;
+  imagesPaths: string[];
 
   categories = categoriesList.categories;
 
@@ -46,7 +46,7 @@ export class IndexComponent implements OnInit {
               private userService: UserService,
               private commentService: CommentService,
               private notificationService: NotificationService,
-              private imageService: ImageUploadService,
+
   ) {
   }
 
@@ -56,7 +56,6 @@ export class IndexComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.posts = data;
-        this.getImagesToPosts(this.posts);
         this.getCommentsToPosts(this.posts);
         this.isPostsLoaded = true;
       });
@@ -68,20 +67,6 @@ export class IndexComponent implements OnInit {
         this.isUserDataLoaded = true;
       });
   }
-
-  getImagesToPosts(posts: Post[]): void {
-    posts.forEach(p => {
-      this.imageService.getImagesToPost(p.id)
-        .subscribe(data => {
-          console.log(data);
-          p.image = data;
-          this.isImagesToPostLoaded = true;
-
-
-        });
-    });
-  }
-
 
   getCommentsToPosts(posts: Post[]): void {
     posts.forEach(p => {
@@ -136,7 +121,8 @@ export class IndexComponent implements OnInit {
     if (img == null) {
       return null;
     }
-    return img.substring(img.indexOf('https://api.surfspot.ee/home/var/www/uploads/'));
+    this.imagesPaths = img.split(', ');
+    return this.imagesPaths;
   }
 
   showPostsForCurrentPage(lowValue: number, highValue: number): void {
@@ -144,7 +130,6 @@ export class IndexComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.posts = data;
-        this.getImagesToPosts(this.posts);
         this.getCommentsToPosts(this.posts);
         this.isPostsLoaded = true;
       });
@@ -163,7 +148,6 @@ export class IndexComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.posts = data;
-        this.getImagesToPosts(this.posts);
         this.getCommentsToPosts(this.posts);
         this.isPostsLoaded = true;
         this.categorySelected = true;

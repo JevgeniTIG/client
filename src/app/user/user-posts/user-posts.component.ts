@@ -6,7 +6,6 @@ import {CommentService} from '../../services/comment.service';
 import {NotificationService} from '../../services/notification.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {EditPostComponent} from '../../post/edit-post/edit-post.component';
-import {log} from 'util';
 
 @Component({
   selector: 'app-user-posts',
@@ -16,10 +15,9 @@ import {log} from 'util';
 export class UserPostsComponent implements OnInit {
 
   isUserPostsLoaded = false;
-  isImagesToPostLoaded: boolean;
   posts: Post [];
   post: Post;
-
+  imagesPaths: string[];
 
   constructor(private postService: PostService,
               private imageService: ImageUploadService,
@@ -33,21 +31,9 @@ export class UserPostsComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.posts = data;
-        this.getImagesToPosts(this.posts);
         this.getCommentsToPosts(this.posts);
         this.isUserPostsLoaded = true;
       });
-  }
-
-  getImagesToPosts(posts: Post[]): void {
-    posts.forEach(p => {
-      this.imageService.getImagesToPost(p.id)
-        .subscribe(data => {
-          console.log(data);
-          p.image = data;
-          this.isImagesToPostLoaded = true;
-        });
-    });
   }
 
 
@@ -72,12 +58,20 @@ export class UserPostsComponent implements OnInit {
     }
   }
 
+  formatImage(img: any): any {
+    if (img == null) {
+      return null;
+    }
+    return 'data:image/jpeg;base64,' + img;
+  }
+
 
   formatImagePath(img: string): any {
     if (img == null) {
       return null;
     }
-    return img.substring(img.indexOf('https://api.surfspot.ee/home/var/www/uploads/'));
+    this.imagesPaths = img.split(', ');
+    return this.imagesPaths;
   }
 
 
@@ -101,7 +95,7 @@ export class UserPostsComponent implements OnInit {
     this.dialog.open(EditPostComponent, dialogEditPostConfig);
   }
 
-  public changeMainImg(image: any, i: number): void{
+  public changeMainImg(image: any, i: number): void {
     this.posts[i].mainImage = image;
     this.posts[i].isImageThumbnailTouched = true;
   }

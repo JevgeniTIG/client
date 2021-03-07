@@ -5,7 +5,6 @@ import {PostService} from '../../services/post.service';
 import {UserService} from '../../services/user.service';
 import {CommentService} from '../../services/comment.service';
 import {NotificationService} from '../../services/notification.service';
-import {ImageUploadService} from '../../services/image-upload.service';
 import {categoriesList} from '../../models/categories';
 
 
@@ -30,13 +29,13 @@ export class IndexGuestComponent implements OnInit {
   lowValue = 0;
   highValue = 49;
 
-  isImagesToPostLoaded: boolean;
   isPostsLoaded = false;
   posts: Post[];
   isUserDataLoaded = false;
   user: User;
   category: string;
   tempImg: string;
+  imagesPaths: string[];
 
   categories = categoriesList.categories;
 
@@ -47,7 +46,6 @@ export class IndexGuestComponent implements OnInit {
               private userService: UserService,
               private commentService: CommentService,
               private notificationService: NotificationService,
-              private imageService: ImageUploadService,
   ) {
   }
 
@@ -57,25 +55,10 @@ export class IndexGuestComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.posts = data;
-        this.getImagesToPosts(this.posts);
         this.getCommentsToPosts(this.posts);
         this.isPostsLoaded = true;
       });
   }
-
-  getImagesToPosts(posts: Post[]): void {
-    posts.forEach(p => {
-      this.imageService.getImagesToPost(p.id)
-        .subscribe(data => {
-          console.log(data);
-          p.image = data;
-          this.isImagesToPostLoaded = true;
-
-
-        });
-    });
-  }
-
 
   getCommentsToPosts(posts: Post[]): void {
     posts.forEach(p => {
@@ -93,11 +76,12 @@ export class IndexGuestComponent implements OnInit {
     return 'data:image/jpeg;base64,' + img;
   }
 
-  formatImagePath(img: string): string {
+  formatImagePath(img: string): any {
     if (img == null) {
       return null;
     }
-    return img.substring(img.indexOf('/var'));
+    this.imagesPaths = img.split(', ');
+    return this.imagesPaths;
   }
 
   showPostsForCurrentPage(lowValue: number, highValue: number): void {
@@ -105,7 +89,6 @@ export class IndexGuestComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.posts = data;
-        this.getImagesToPosts(this.posts);
         this.getCommentsToPosts(this.posts);
         this.isPostsLoaded = true;
       });
@@ -117,7 +100,6 @@ export class IndexGuestComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.posts = data;
-        this.getImagesToPosts(this.posts);
         this.getCommentsToPosts(this.posts);
         this.isPostsLoaded = true;
         this.categorySelected = true;

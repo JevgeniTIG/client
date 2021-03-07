@@ -18,7 +18,6 @@ export class AddPostComponent implements OnInit {
   selectedFile: File;
 
   selectedFiles: File[];
-
   message = '';
   urls = [];
 
@@ -71,12 +70,22 @@ export class AddPostComponent implements OnInit {
 
       if (this.createdPost.id != null && this.selectedFiles != null) {
         const fileListAsArray = Array.from(this.selectedFiles);
+        let filesNames = [];
         fileListAsArray.forEach((file: File) => {
+          console.log(file.name);
+          filesNames.push(file.name);
+
           this.imageUploadService.uploadImageToPost(file, this.createdPost.id)
             .subscribe(() => {
               console.log('Uploading images...');
             });
         });
+        console.log(filesNames);
+        this.postService.saveImagePathToPost(filesNames.toString(), this.createdPost.id)
+          .subscribe((text) => {
+             filesNames = text;
+             console.log('Saving images names to database...');
+          });
         this.notificationService.showSnackBar('Post created successfully');
         this.isPostCreated = true;
         this.timeout();
@@ -94,7 +103,6 @@ export class AddPostComponent implements OnInit {
       this.timeout();
     }, 3000);
   }
-
 
 
   selectFiles(event): void {
