@@ -88,21 +88,20 @@ export class AddPostComponent implements OnInit {
           });
         this.notificationService.showSnackBar('Post created successfully');
         this.isPostCreated = true;
-        this.timeout();
-        this.router.navigate(['/profile']);
-          // .then(() => {
-          //   window.location.reload();
-          // });
+
+        setTimeout(() => { this.navigateAndReload(); }, 3000);
+
       }
     });
   }
 
-  timeout(): any {
-    setTimeout(() => {
-      console.log('Test');
-      this.timeout();
-    }, 3000);
+  navigateAndReload(): void {
+    this.router.navigate(['/profile'])
+      .then(() => {
+        window.location.reload();
+    });
   }
+
 
 
   selectFiles(event): void {
