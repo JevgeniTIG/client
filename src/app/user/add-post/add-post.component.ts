@@ -83,13 +83,15 @@ export class AddPostComponent implements OnInit {
         console.log(filesNames);
         this.postService.saveImagePathToPost(filesNames.toString(), this.createdPost.id)
           .subscribe((text) => {
-             filesNames = text;
-             console.log('Saving images names to database...');
+            filesNames = text;
+            console.log('Saving images names to database...');
           });
         this.notificationService.showSnackBar('Post created successfully');
         this.isPostCreated = true;
 
-        setTimeout(() => { this.navigateAndReload(); }, 3000);
+        setTimeout(() => {
+          this.navigateAndReload();
+        }, 3000);
 
       }
     });
@@ -99,9 +101,8 @@ export class AddPostComponent implements OnInit {
     this.router.navigate(['/profile'])
       .then(() => {
         window.location.reload();
-    });
+      });
   }
-
 
 
   selectFiles(event): void {

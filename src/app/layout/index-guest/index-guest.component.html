@@ -35,7 +35,7 @@
           <img mat-card-image *ngIf="!post.isImageThumbnailTouched; then isNotTouched; else isTouched">
           <div class="thumbnails">
 
-            <img *ngIf="formatImagePath(post.images)[0]" class="thumbnail-zero" [src]="formatImagePath(post.images)[0]"
+            <img *ngIf="formatImagePath(post.images)[0] && formatImagePath(post.images)[1]" class="thumbnail-zero" [src]="formatImagePath(post.images)[0]"
                  (click)="changeMainImg(formatImagePath(post.images)[0], i)">
 
             <img *ngIf="formatImagePath(post.images)[1]" class="thumbnail-one" [src]="formatImagePath(post.images)[1]"
