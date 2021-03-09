@@ -3,6 +3,12 @@
   padding: 0;
   box-sizing: border-box;
   text-align: center;
+}
+
+@media (max-width: 600px) {
+  .man-on-bike {
+    width: 300px;
+  }
 
 }
 
