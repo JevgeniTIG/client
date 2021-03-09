@@ -10,3 +10,10 @@
 mat-form-field {
   width: 50%;
 }
+
+@media (max-width: 600px) {
+  .register-btn {
+    padding: 2px;
+  }
+
+}
