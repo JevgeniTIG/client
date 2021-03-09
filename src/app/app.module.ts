@@ -26,6 +26,11 @@ import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import {ButtonsModule} from 'angular-bootstrap-md';
 import {IndexGuestComponent} from './layout/index-guest/index-guest.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -58,6 +63,11 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatCheckboxModule,
     ButtonsModule,
     MatTooltipModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [authInterceptorProviders, authErrorInterceptorProviders],
   bootstrap: [AppComponent]

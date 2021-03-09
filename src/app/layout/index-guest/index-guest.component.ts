@@ -6,6 +6,9 @@ import {UserService} from '../../services/user.service';
 import {CommentService} from '../../services/comment.service';
 import {NotificationService} from '../../services/notification.service';
 import {categoriesList} from '../../models/categories';
+import {Observable} from 'rxjs';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {map, shareReplay} from 'rxjs/operators';
 
 
 @Component({
@@ -39,6 +42,14 @@ export class IndexGuestComponent implements OnInit {
 
   categories = categoriesList.categories;
 
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
+
+
+
   @ViewChild('commentField') commentField: string;
 
 
@@ -46,6 +57,7 @@ export class IndexGuestComponent implements OnInit {
               private userService: UserService,
               private commentService: CommentService,
               private notificationService: NotificationService,
+              private breakpointObserver: BreakpointObserver
   ) {
   }
 
@@ -111,6 +123,11 @@ export class IndexGuestComponent implements OnInit {
     this.posts[i].mainImage = image;
     this.posts[i].isImageThumbnailTouched = true;
   }
+
+  refresh(): void {
+    window.location.reload();
+  }
+
 
 }
 

@@ -4,15 +4,43 @@
 
 .side-filter {
   margin-left: 10px;
-  position: fixed;
+  position: sticky;
   top: 100px;
 }
+
+@media(max-width: 600px){
+  .side-filter, .drawer-container{
+    display: none;
+  }
+}
+
+.main-filter-mobile-devices {
+  visibility: hidden;
+}
+@media (max-width: 600px) {
+  .main-filter-mobile-devices {
+    visibility: visible;
+    margin-left: 10px;
+  }
+
+}
+
 
 .index-page {
   display: block;
   margin: 0 auto;
-  width: 60%;
+  width: 80%;
   padding-top: 3rem;
+}
+
+@media (max-width: 600px) {
+  .index-page{
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 3rem;
+  }
+
 }
 
 .post-card {
