@@ -20,7 +20,7 @@
 @media (max-width: 600px) {
   .main-filter-mobile-devices {
     visibility: visible;
-    margin-left: 10px;
+    margin-left: 20px;
     width: 100px;
   }
 
