@@ -21,6 +21,7 @@
   .main-filter-mobile-devices {
     visibility: visible;
     margin-left: 10px;
+    width: 100px;
   }
 
 }
