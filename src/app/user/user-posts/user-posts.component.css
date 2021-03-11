@@ -1,8 +1,14 @@
 .post-card {
   display: block;
   margin: 1rem auto;
-  width: 100%;
+  width: 80%;
 }
+@media (max-width: 600px) {
+  .post-card {
+    width: 100%;
+  }
+}
+
 button {
   color: #4051b6;
   margin-bottom: 20px;
