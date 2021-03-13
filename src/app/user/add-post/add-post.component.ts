@@ -92,7 +92,14 @@ export class AddPostComponent implements OnInit {
         setTimeout(() => {
           this.navigateAndReload();
         }, 3000);
+      }
+      if (this.createdPost.id != null && this.selectedFiles == null) {
+        this.notificationService.showSnackBar('Post created successfully');
+        this.isPostCreated = true;
 
+        setTimeout(() => {
+          this.navigateAndReload();
+        }, 3000);
       }
     });
   }
