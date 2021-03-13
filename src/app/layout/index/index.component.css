@@ -3,8 +3,9 @@
 }
 
 .side-filter {
-  margin-left: 10px;
+  margin-left: 16px;
   position: relative;
+  width: 80%;
   top: 100px;
 }
 
